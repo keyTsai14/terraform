@@ -129,3 +129,12 @@ Destroy the EC2 instance with terraform destroy. When Terraform asks you to conf
 ```shell
 $ terraform destroy
 ```
+
+
+## use local config file to build infrastructure for aws building
+
+```shell
+terraform init
+terraform apply -var-file=../shared-configs/aws-creds.tfvars
+terraform destroy -var-file=../shared-configs/aws-creds.tfvars
+```
