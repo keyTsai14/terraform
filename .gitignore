@@ -42,3 +42,4 @@ terraform.tfvars.test.json
 terraform.tfvars.dev.json
 terraform.tfvars.prod.json
 terraform.tfvars.stg.json
+.terraform.*
