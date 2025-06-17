@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.log
+*.sqlite3
+
+# Virtual Environments
+.venv/
+env/
+venv/
+
+# IDEs and editors
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+terraform.lock.hcl
+terraform.tfvars
+terraform.tfvars.json
+terraform.tfvars.development
+terraform.tfvars.production
+terraform.tfvars.staging
+terraform.tfvars.test
+terraform.tfvars.dev
+terraform.tfvars.prod
+terraform.tfvars.stg
+terraform.tfvars.tst
+terraform.tfvars.development.json
+terraform.tfvars.production.json
+terraform.tfvars.staging.json
+terraform.tfvars.test.json
+terraform.tfvars.dev.json
+terraform.tfvars.prod.json
+terraform.tfvars.stg.json
