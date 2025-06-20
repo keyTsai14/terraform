@@ -138,3 +138,8 @@ terraform init
 terraform apply -var-file=../shared-configs/aws-creds.tfvars
 terraform destroy -var-file=../shared-configs/aws-creds.tfvars
 ```
+
+note: before `init`, format terraform file
+```shell
+terraform fmt
+```
