@@ -44,3 +44,12 @@ terraform.tfvars.prod.json
 terraform.tfvars.stg.json
 .terraform.*
 *.tfvars
+.terragrunt*
+terragrunt.auto-apply
+terragrunt.output
+terragrunt.state
+terragrunt-tfstate
+terragrunt-tfstate-backup
+terragrunt-tfstate-lock
+terragrunt-tfstate-lock.hcl
+terragrunt-tfstate-lock.json
