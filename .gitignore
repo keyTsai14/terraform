@@ -53,3 +53,4 @@ terragrunt-tfstate-backup
 terragrunt-tfstate-lock
 terragrunt-tfstate-lock.hcl
 terragrunt-tfstate-lock.json
+terragrunt-debug*
