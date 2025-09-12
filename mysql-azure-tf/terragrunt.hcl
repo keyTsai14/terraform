@@ -1,24 +1,33 @@
-# 当运行 terragrunt plan 或 terragrunt apply 时，
-# 会自动加载项目根目录下的 common.tfvars 文件，使得所有环境都能共享一些基础配置。
-terraform {
-    # extra_arguments：所有 Terraform 命令添加额外的命令行参数
-    extra_arguments "common_vars" {
-        commands = get_terraform_commands_that_need_vars()          # 获取所有需要变量的 Terraform 命令
-        arguments = [
-            "-var-file=${get_terragrunt_dir()}/../common.tfvars"    # 相对于当前 terragrunt.hcl 文件的 ../common.tfvars 路径
-        ]
-
-    }
+# Root terragrunt configuration - shared configuration for all environments
+locals {
+  tfvars_file = "${get_parent_terragrunt_dir()}/common.tfvars"
+  # Remote state defaults (can be overridden via env vars)
+  state_rg         = get_env("TF_STATE_RG", "rg-tfstate-example")
+  state_sa         = get_env("TF_STATE_SA", "sttfstateexample")
+  state_container  = get_env("TF_STATE_CONTAINER", "tfstate")
+  state_key_prefix = "mysql-azure-tf"
 }
 
+terraform {
+  # No source at root; environments set their own module source.
+  extra_arguments "common_tfvars" {
+    commands  = ["plan", "apply"]
+    arguments = ["-var-file=${local.tfvars_file}"]
+  }
+}
 
-
+# Centralized remote state for all environments (Azure Storage)
 remote_state {
-    backend = "azurerm"
-    config = {
-        resource_group_name = "terraform-rg"
-        storage_account_name = "terraformsa"
-        container_name = "terraform"
-        key = "${path_relative_to_include()}/terraform.tfstate" # 获取相对于包含文件的路径
-    }
+  backend = "azurerm"
+  generate = {
+    path      = "backend.tf"
+    if_exists = "overwrite"
+  }
+  config = {
+    resource_group_name  = local.state_rg
+    storage_account_name = local.state_sa
+    container_name       = local.state_container
+    key                  = "${local.state_key_prefix}/${path_relative_to_include()}/terraform.tfstate"
+    use_azuread_auth     = true
+  }
 }

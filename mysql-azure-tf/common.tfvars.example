@@ -1,0 +1,20 @@
+# 示例公共变量文件（可提交到 Git）
+# 使用方式：复制为 common.tfvars 并按需修改。
+
+# 跨环境共享的基础配置
+location              = "japaneast"
+mysql_version         = "5.7"
+backup_retention_days = 7
+size_gb               = 100
+
+# 安全基线配置
+# 注意：若在生产环境使用公网，请严格配置防火墙白名单。
+public_network_access_enabled = true
+
+# 说明：
+# - 该文件仅示例非敏感参数。敏感信息（如数据库管理员密码）请通过环境变量提供：
+#     export TF_VAR_administrator_password="<your-strong-password>"
+# - 若使用远端状态，请在 shell/CI 中设置：
+#     export TF_STATE_RG=<tfstate-resource-group>
+#     export TF_STATE_SA=<tfstate-storage-account>
+#     export TF_STATE_CONTAINER=tfstate

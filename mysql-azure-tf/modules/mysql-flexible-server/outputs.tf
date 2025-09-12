@@ -8,5 +8,5 @@ output "mysql_server_fqdn" {
 }
 
 output "resource_group_name" {
-  value = azurerm_resource_group.rg.name
+  value = azurerm_mysql_flexible_server.mysql.resource_group_name
 }
