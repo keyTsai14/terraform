@@ -1,0 +1,7 @@
+# Terragrunt/Terraform
+.terragrunt-cache/
+**/.terraform/
+**/terraform.tfstate
+**/terraform.tfstate.backup
+**/crash.log
+
